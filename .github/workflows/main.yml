@@ -30,7 +30,8 @@ jobs:
       - name: Extract Android project
         run: |
           unzip -o GTASAControlBridge-mobile-build.zip -d source
-
+          XML="source/GTASAControlBridge/app/src/main/res/xml/accessibility_service_config.xml"
+          sed -i 's|android:description="[^"]*"|android:description="@string/app_name"|' "$XML"
       - name: Build APK
         run: |
           gradle --no-daemon \
